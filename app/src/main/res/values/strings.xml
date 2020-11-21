@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TeamMobile</string>
+    <string name="btnText">ЗАГРУЗИТЬ</string>
+    <string name="reviews_picture">Reviews Picture</string>
 </resources>
