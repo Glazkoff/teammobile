@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiConfiguration {
 
-    public static final String BASE_URL = "https://marketing-game.herokuapp.com/api";
+    public static final String BASE_URL = "https://marketing-game.herokuapp.com/api/";
 
     private static ApiInterface api;
     private static ApiConfiguration mInstance;

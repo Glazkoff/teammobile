@@ -36,7 +36,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.detailReviewText.setText("Отзыв #"+review.review_id
                 +"\nКомната #"+review.room_id
                 +"\nСодержание:"+review.comment);
-        
+
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         return list.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView detailReviewImg;
         TextView detailReviewText;
