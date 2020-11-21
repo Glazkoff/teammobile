@@ -1,6 +1,7 @@
 package ru.catcherry.teammobile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +37,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.detailReviewText.setText("Отзыв #"+review.review_id
                 +"\nКомната #"+review.room_id
                 +"\nСодержание:"+review.comment);
-
+        holder.detailReviewLayout.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ReviewDetailActivity.class);
+            intent.putExtra("reviewId", review.review_id);
+            context.startActivity(intent);
+        });
     }
 
     @Override
