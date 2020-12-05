@@ -3,7 +3,8 @@ package ru.catcherry.teammobile;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
-import ru.catcherry.teammobile.config.ConfigsList;
+import ru.catcherry.teammobile.config.Config;
+import ru.catcherry.teammobile.config.ConfigData;
 import ru.catcherry.teammobile.reviews.Review;
 import ru.catcherry.teammobile.reviews.ReviewsList;
 import ru.catcherry.teammobile.users.UsersList;
@@ -20,5 +21,5 @@ public interface ApiInterface {
     Observable<UsersList> users();
 
     @GET("admin/globalconfig")
-    Observable<ConfigsList> configs();
+    Observable<ConfigData> configs();
 }

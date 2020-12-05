@@ -9,4 +9,7 @@ public class Config {
 
     @SerializedName("event_chance")
     double event_chance;
+
+    @SerializedName("createdAt")
+    String createdAt;
 }
