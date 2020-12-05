@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -17,7 +18,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
+    RecyclerView reviewsRecyclerView;
     ListAdapter adapter;
     List<Review> list;
     ApiInterface api;
@@ -29,12 +30,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         list = new ArrayList<>();
         adapter = new ListAdapter(this, list);
-        recyclerView = findViewById(R.id.list);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        reviewsRecyclerView = findViewById(R.id.list);
+        reviewsRecyclerView.setAdapter(adapter);
+        reviewsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         api = ApiConfiguration.getApi();
         disposables = new CompositeDisposable();
-        this.onClick(this.recyclerView);
+        this.onClick(this.reviewsRecyclerView);
     }
 
     public void onClick(View view) {
@@ -47,5 +48,7 @@ public class MainActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
                 }, (error) -> Toast.makeText(this, "При поиске возникла ошибка:\n" + error.getMessage(),
                         Toast.LENGTH_LONG).show()));
+        Intent intent = new Intent(this, TabActivity.class);
+        startActivity(intent);
     }
 }

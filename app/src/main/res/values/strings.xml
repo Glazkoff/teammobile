@@ -3,4 +3,9 @@
     <string name="btnText">ЗАГРУЗИТЬ</string>
     <string name="reviews_picture">Reviews Picture</string>
     <string name="full_review_image">full review image</string>
+    <string name="title_activity_tab">TabActivity</string>
+    <string name="tab_text_1">Пользователи</string>
+    <string name="tab_text_2">Отзывы</string>
+    <string name="tab_text_3">Комнаты</string>
+    <string name="tab_text_4">Настройки</string>
 </resources>
