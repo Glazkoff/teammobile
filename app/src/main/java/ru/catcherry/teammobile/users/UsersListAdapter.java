@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,16 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import ru.catcherry.teammobile.ListAdapter;
 import ru.catcherry.teammobile.R;
-import ru.catcherry.teammobile.Review;
 
 public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.ViewHolder> {
 
-    Context context;
-    List<User> list;
+    private Context context;
+    private List<User> list;
 
-    public UsersListAdapter(Context context, List<User> list){
+    UsersListAdapter(Context context, List<User> list){
         this.context = context;
         this.list = list;
     }

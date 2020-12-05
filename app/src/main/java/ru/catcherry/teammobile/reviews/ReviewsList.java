@@ -1,4 +1,4 @@
-package ru.catcherry.teammobile;
+package ru.catcherry.teammobile.reviews;
 
 import com.google.gson.annotations.SerializedName;
 

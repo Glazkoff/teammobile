@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import ru.catcherry.teammobile.R;
+import ru.catcherry.teammobile.reviews.ReviewsFragment;
 import ru.catcherry.teammobile.users.UsersFragment;
 
 /**
@@ -35,7 +36,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return new UsersFragment();
             case 1:
-                return new UsersFragment();
+                return new ReviewsFragment();
             case 2:
                 return new UsersFragment();
 
