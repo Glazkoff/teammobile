@@ -1,4 +1,4 @@
-package ru.catcherry.teammobile;
+package ru.catcherry.teammobile.reviews;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +9,9 @@ import android.widget.Toast;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import ru.catcherry.teammobile.ApiConfiguration;
+import ru.catcherry.teammobile.ApiInterface;
+import ru.catcherry.teammobile.R;
 
 public class ReviewDetailActivity extends AppCompatActivity {
 

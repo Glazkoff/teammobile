@@ -1,4 +1,4 @@
-package ru.catcherry.teammobile;
+package ru.catcherry.teammobile.reviews;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,12 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
+import ru.catcherry.teammobile.R;
+
+public class ReviewsListAdapter extends RecyclerView.Adapter<ReviewsListAdapter.ViewHolder> {
 
     Context context;
     List<Review> list;
 
-    public ListAdapter(Context context, List<Review> list){
+    public ReviewsListAdapter(Context context, List<Review> list){
         this.context = context;
         this.list = list;
     }
