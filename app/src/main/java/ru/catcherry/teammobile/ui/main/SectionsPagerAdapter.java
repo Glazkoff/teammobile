@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import ru.catcherry.teammobile.R;
+import ru.catcherry.teammobile.config.ConfigsFragment;
 import ru.catcherry.teammobile.reviews.ReviewsFragment;
 import ru.catcherry.teammobile.users.UsersFragment;
 
@@ -19,7 +20,7 @@ import ru.catcherry.teammobile.users.UsersFragment;
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2,R.string.tab_text_3, R.string.tab_text_4};
+    private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_4};
     private final Context mContext;
 
     public SectionsPagerAdapter(Context context, FragmentManager fm) {
@@ -38,7 +39,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return new ReviewsFragment();
             case 2:
-                return new UsersFragment();
+                return new ConfigsFragment();
 
            default:
                 return new UsersFragment();
@@ -53,6 +54,6 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 }
