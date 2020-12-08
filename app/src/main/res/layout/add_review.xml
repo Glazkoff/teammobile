@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="OnAddReview"
     android:orientation="vertical"
     tools:context=".AddReviewActivity">
 
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/numberOfRoom"
-        android:inputType="textPersonName"
+        android:inputType="number"
         tools:ignore="Autofill,TextFields" />
 
     <EditText
@@ -46,15 +47,14 @@
             android:id="@+id/fiveStars"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fiveStars"
-             />
+            android:checked="false"
+            android:text="@string/fiveStars" />
 
         <RadioButton
             android:id="@+id/fourStars"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/fourStars"
-             />
+            android:text="@string/fourStars" />
 
         <RadioButton
             android:id="@+id/threeStars"
@@ -87,6 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
+        android:onClick="OnAddReview"
         android:text="@string/addReview"
         android:textSize="24sp" />
 </LinearLayout>
