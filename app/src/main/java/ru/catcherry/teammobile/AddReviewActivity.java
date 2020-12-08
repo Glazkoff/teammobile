@@ -61,7 +61,7 @@ public class AddReviewActivity extends AppCompatActivity {
             room_id = 1;
             else
             room_id = Integer.parseInt(editNumberOfRoom.getText().toString());
-        author_id = 1;
+        author_id = 1037;
         comment = editTextReview.getText().toString();
 
         System.out.println("Комната: " + room_id);
