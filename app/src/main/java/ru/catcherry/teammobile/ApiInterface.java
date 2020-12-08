@@ -1,7 +1,11 @@
 package ru.catcherry.teammobile;
 
 import io.reactivex.Observable;
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import ru.catcherry.teammobile.config.Config;
 import ru.catcherry.teammobile.config.ConfigData;
@@ -22,4 +26,7 @@ public interface ApiInterface {
 
     @GET("admin/globalconfig")
     Observable<ConfigData> configs();
+
+    @POST("addreview")
+    Call<Review> addReview(@Body Review data);
 }
