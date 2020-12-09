@@ -36,9 +36,9 @@ public class ReviewsListAdapter extends RecyclerView.Adapter<ReviewsListAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Review review = list.get(position);
-        holder.detailReviewText.setText("Отзыв #"+review.review_id
-                +"\nКомната #"+review.room_id
-                +"\nСодержание:"+review.comment);
+        holder.detailReviewText.setText("Содержание: " + review.comment);
+        holder.detailReviewRoom.setText("Комната №" + review.room_id);
+        holder.detailReviewHeader.setText("Отзыв №" + review.review_id);
         holder.detailReviewLayout.setOnClickListener(v -> {
             Intent intent = new Intent(context, ReviewDetailActivity.class);
             intent.putExtra("reviewId", review.review_id);
@@ -53,13 +53,14 @@ public class ReviewsListAdapter extends RecyclerView.Adapter<ReviewsListAdapter.
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView detailReviewImg;
-        TextView detailReviewText;
+
+        TextView detailReviewText, detailReviewRoom, detailReviewHeader;
         LinearLayout detailReviewLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            detailReviewImg = itemView.findViewById(R.id.detailReviewImg);
+            detailReviewHeader = itemView.findViewById(R.id.detailReviewHeader);
+            detailReviewRoom = itemView.findViewById(R.id.detailReviewRoom);
             detailReviewText = itemView.findViewById(R.id.detailReviewText);
             detailReviewLayout = itemView.findViewById(R.id.detailReviewLayout);
         }
