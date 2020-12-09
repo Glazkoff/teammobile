@@ -8,4 +8,14 @@
     <string name="tab_text_2">Отзывы</string>
     <string name="tab_text_3">Комнаты</string>
     <string name="tab_text_4">Настройки</string>
+    <string name="addReview">Добавить отзыв</string>
+    <string name="zeroStar">0 звёзд</string>
+    <string name="oneStar">1 звезда</string>
+    <string name="twoStars">2 звезды</string>
+    <string name="threeStars">3 звезды</string>
+    <string name="fourStars">4 звезды</string>
+    <string name="fiveStars">5 звёзд</string>
+    <string name="mark">Оценка:</string>
+    <string name="textReview">Отзыв</string>
+    <string name="numberOfRoom">Номер комнаты</string>
 </resources>

@@ -46,7 +46,9 @@ public class ReviewDetailActivity extends AppCompatActivity {
                                         Toast.makeText(this, error.getMessage(), Toast.LENGTH_LONG).show();
                                     }));
         }
+
     }
+
 
     @Override
     public void onDestroy() {

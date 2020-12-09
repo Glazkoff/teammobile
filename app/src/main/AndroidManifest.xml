@@ -12,14 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-<!--        <activity-->
-<!--            android:name=".MainActivity"-->
-<!--            android:label="@string/title_activity_tab"-->
-<!--            android:theme="@style/AppTheme.NoActionBar"></activity>-->
+        <activity android:name=".AddReviewActivity"></activity>
+        <!-- <activity -->
+        <!-- android:name=".MainActivity" -->
+        <!-- android:label="@string/title_activity_tab" -->
+        <!-- android:theme="@style/AppTheme.NoActionBar"></activity> -->
         <activity android:name=".reviews.ReviewDetailActivity" />
-        <activity android:name=".MainActivity" android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
