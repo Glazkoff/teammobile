@@ -5,14 +5,27 @@ import com.google.gson.annotations.SerializedName;
 public class Review {
 
     @SerializedName("review_id")
+    public
     int review_id;
+
+    @SerializedName("author_id")
+    int author_id;
 
     @SerializedName("room_id")
     int room_id;
 
+    @SerializedName("rating")
+    int rating;
+
     @SerializedName("comment")
     String comment;
 
+    public Review(int author_id, int room_id, int rating, String comment ) {
+        this.author_id = author_id;
+        this.room_id = room_id;
+        this.rating = rating;
+        this.comment = comment;
+    }
 }
 
 //{

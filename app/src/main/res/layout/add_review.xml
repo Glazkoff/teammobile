@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:onClick="OnAddReview"
+    android:orientation="vertical"
+    tools:context=".AddReviewActivity">
+
+    <EditText
+        android:id="@+id/numberOfRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/numberOfRoom"
+        android:inputType="number"
+        tools:ignore="Autofill,TextFields" />
+
+    <EditText
+        android:id="@+id/textReview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/textReview"
+        android:inputType="textMultiLine"
+        tools:ignore="Autofill" />
+
+    <TextView
+        android:id="@+id/mark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="@string/mark"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+
+    <RadioGroup
+        android:id="@+id/numberOfStars"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:checkedButton="@id/fiveStars">
+
+        <RadioButton
+            android:id="@+id/fiveStars"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="@string/fiveStars" />
+
+        <RadioButton
+            android:id="@+id/fourStars"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fourStars" />
+
+        <RadioButton
+            android:id="@+id/threeStars"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/threeStars" />
+
+        <RadioButton
+            android:id="@+id/twoStars"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/twoStars" />
+
+        <RadioButton
+            android:id="@+id/oneStar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/oneStar" />
+
+        <RadioButton
+            android:id="@+id/zeroStar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/zeroStar" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/addReview"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:onClick="OnAddReview"
+        android:text="@string/addReview"
+        android:textSize="24sp" />
+</LinearLayout>
