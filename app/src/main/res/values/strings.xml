@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TeamMobile</string>
+    <string name="app_name">IMGame dashboard</string>
     <string name="btnText">ЗАГРУЗИТЬ</string>
     <string name="reviews_picture">Reviews Picture</string>
     <string name="full_review_image">full review image</string>
