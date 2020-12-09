@@ -5,26 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp"
     tools:context=".reviews.ReviewDetailActivity">
-
-    <ImageView
-        android:id="@+id/fullReviewImg"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:contentDescription="@string/full_review_image"
-        android:src="@android:drawable/btn_star_big_on" />
 
     <TextView
         android:id="@+id/fullReviewId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="18sp"
+        android:fontFamily="sans-serif"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="@color/colorPrimary"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/fullReviewRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/colorAccent"
+        android:textStyle="italic"/>
 
     <TextView
         android:id="@+id/fullReviewText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+        android:paddingBottom="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#000000" />
+
 </LinearLayout>

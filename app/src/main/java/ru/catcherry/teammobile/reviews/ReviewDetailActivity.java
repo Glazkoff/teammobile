@@ -16,8 +16,7 @@ import ru.catcherry.teammobile.R;
 public class ReviewDetailActivity extends AppCompatActivity {
 
     TextView fullReviewId;
-    TextView fullReviewText;
-    ImageView fullReviewImg;
+    TextView fullReviewText, fullReviewRating;
     ApiInterface api;
     private CompositeDisposable disposables;
     String html;
@@ -28,7 +27,7 @@ public class ReviewDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_review_detail);
         fullReviewId = findViewById(R.id.fullReviewId);
         fullReviewText = findViewById(R.id.fullReviewText);
-        fullReviewImg = findViewById(R.id.fullReviewImg);
+        fullReviewRating = findViewById(R.id.fullReviewRating);
         api = ApiConfiguration.getApi();
         disposables = new CompositeDisposable();
         if (getIntent().getExtras() != null){
@@ -40,6 +39,7 @@ public class ReviewDetailActivity extends AppCompatActivity {
                                     (review) -> {
                                         fullReviewId.setText("Отзыв №"+review.review_id);
                                         fullReviewText.setText("Содержание: "+review.comment);
+                                        fullReviewRating.setText("Количество звёзд: "+review.rating+"/5");
                                     },
                                     (error) -> {
                                         error.printStackTrace();

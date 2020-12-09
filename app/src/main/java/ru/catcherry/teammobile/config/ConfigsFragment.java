@@ -25,7 +25,6 @@ public class ConfigsFragment extends Fragment {
     TextView configId;
     TextView configEventChance;
     TextView configUpdatedAt;
-    TextView configCreatedAt;
 
     ApiInterface api;
     private CompositeDisposable disposables;
@@ -44,15 +43,14 @@ public class ConfigsFragment extends Fragment {
         configId = view.findViewById(R.id.configId);
         configEventChance = view.findViewById(R.id.configEventChance);
         configUpdatedAt = view.findViewById(R.id.configUpdatedAt);
-        configCreatedAt = view.findViewById(R.id.configCreatedAt);
 
         disposables.add(api.configs()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((configData) -> {
-                    configId.setText("Редакция: #"+ configData.config.config_id);
+                    configId.setText("Редакция №"+ configData.config.config_id);
                     configEventChance.setText("Шанс случайного события: "+ configData.config.event_chance);
-                    configCreatedAt.setText("Дата изменения: "+ configData.config.createdAt);
+                    configUpdatedAt.setText("Дата изменения: "+ configData.config.createdAt);
                 }, (error) -> Toast.makeText(view.getContext(), "При поиске возникла ошибка:\n" + error.getMessage(),
                         Toast.LENGTH_LONG).show()));
         return view;

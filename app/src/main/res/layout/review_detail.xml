@@ -4,19 +4,34 @@
     android:id="@+id/detailReviewLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp">
 
-    <ImageView
-        android:id="@+id/detailReviewImg"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_weight="1"
-        android:contentDescription="@string/reviews_picture"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+    <TextView
+        android:id="@+id/detailReviewHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/colorPrimary"
+        android:textSize="26sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/detailReviewRoom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textStyle="italic" />
 
     <TextView
         android:id="@+id/detailReviewText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_height="wrap_content"
+        android:paddingBottom="5dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
 </LinearLayout>
