@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class Review {
 
     @SerializedName("review_id")
+    public
     int review_id;
 
     @SerializedName("author_id")

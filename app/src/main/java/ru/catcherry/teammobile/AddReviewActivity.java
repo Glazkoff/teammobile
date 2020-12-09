@@ -15,6 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import ru.catcherry.teammobile.reviews.Review;
+import ru.catcherry.teammobile.reviews.ReviewDetailActivity;
 
 public class AddReviewActivity extends AppCompatActivity {
     EditText editNumberOfRoom, editTextReview;
@@ -76,7 +77,7 @@ public class AddReviewActivity extends AppCompatActivity {
             public void onResponse(Call<Review> call, Response<Review> response) {
                 int mStatusCode = response.code();
                 Review review = response.body();
-                Log.d("AddReviewActivity","onResponse " + mStatusCode + ". Body: " + review);
+                Log.d("AddReviewActivity","onResponse " + mStatusCode + ". ID new review: " + review.review_id);
             }
 
             @Override
@@ -84,7 +85,6 @@ public class AddReviewActivity extends AppCompatActivity {
                 Log.d("AddReviewActivity","onFailure" + t);
 
             }});
-
 
         editNumberOfRoom.setText("");
         editTextReview.setText("");
