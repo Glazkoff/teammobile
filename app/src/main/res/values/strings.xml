@@ -18,4 +18,8 @@
     <string name="mark">Оценка:</string>
     <string name="textReview">Отзыв</string>
     <string name="numberOfRoom">Номер комнаты</string>
+    <string name="edit">Изменить</string>
+    <string name="edit">Изменить</string>
+    <string name="headerUpdateConfig">Редактирование настроек глобальной конфигурации</string>
+    <string name="save">Сохранить</string>
 </resources>

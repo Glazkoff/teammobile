@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".AddReviewActivity"></activity>
-        <!-- <activity -->
+        <activity android:name=".config.EditConfigActivity"></activity>
+        <activity android:name=".AddReviewActivity" /> <!-- <activity -->
         <!-- android:name=".MainActivity" -->
         <!-- android:label="@string/title_activity_tab" -->
         <!-- android:theme="@style/AppTheme.NoActionBar"></activity> -->

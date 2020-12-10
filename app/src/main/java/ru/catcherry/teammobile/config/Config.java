@@ -12,4 +12,8 @@ public class Config {
 
     @SerializedName("createdAt")
     String createdAt;
+
+    public Config(double event_chance) {
+        this.event_chance = event_chance;
+    }
 }

@@ -29,4 +29,7 @@ public interface ApiInterface {
 
     @POST("addreview")
     Call<Review> addReview(@Body Review data);
+
+    @POST("admin/globalconfig")
+    Call<Config> addConfig(@Body Config data);
 }
