@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -31,11 +32,13 @@ public class LoginActivity extends AppCompatActivity {
     EditText loginEditText, passwordEditText;
     Button btnLogIn;
     ApiInterface api;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        progressBar = findViewById(R.id.loginProgressBar);
         loginEditText = findViewById(R.id.loginEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         btnLogIn = findViewById(R.id.logInBtn);
@@ -44,11 +47,23 @@ public class LoginActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
+                loginEditText.setVisibility(View.INVISIBLE);
+                passwordEditText.setVisibility(View.INVISIBLE);
+                btnLogIn.setVisibility(View.INVISIBLE);
                 try {
                     onLogIn(view);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                progressBar.setVisibility(View.INVISIBLE);
+                loginEditText.setVisibility(View.VISIBLE);
+                passwordEditText.setVisibility(View.VISIBLE);
+                btnLogIn.setVisibility(View.VISIBLE);
+                loginEditText.setText("");
+                passwordEditText.setText("");
+                loginEditText.clearFocus();
+                passwordEditText.clearFocus();
             }
         });
     }
@@ -61,11 +76,12 @@ public class LoginActivity extends AppCompatActivity {
 
         String login = loginEditText.getText().toString();
         String password = passwordEditText.getText().toString();
-
         if (checkAuth(login, password)) {
             Toast.makeText(LoginActivity.this, "Привет!", Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.INVISIBLE);
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
         } else {
+            progressBar.setVisibility(View.INVISIBLE);
             Toast.makeText(LoginActivity.this, "Неправильный логин или пароль!", Toast.LENGTH_LONG).show();
         }
 
@@ -89,6 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     LoginRequest dataAuth = new LoginRequest(login, password);
                     LoginResponse resp = api.logIn(dataAuth).execute().body();
+                    System.out.println(">>>> BODY: "+resp);
                     return resp;
                 } catch (IOException e) {
                     throw new IllegalStateException(e);
@@ -99,14 +116,17 @@ public class LoginActivity extends AppCompatActivity {
         LoginResponse response = null;
         try {
             response = auth.get();
-            System.out.println("Я НАХУЙ НЕ ВЫДЕРЖИВАЮ!: "+response.token);
+            if (response != null) {
+                if (response.token != null) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
-        }
-
-        if (response != null) {
-            return true;
-        } else {
             return false;
         }
     }
