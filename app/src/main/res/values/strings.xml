@@ -22,4 +22,5 @@
     <string name="edit">Изменить</string>
     <string name="headerUpdateConfig">Редактирование настроек глобальной конфигурации</string>
     <string name="save">Сохранить</string>
+    <string name="headerAddReview">Добавление отзыва</string>
 </resources>
