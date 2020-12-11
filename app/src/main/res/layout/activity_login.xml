@@ -18,7 +18,7 @@
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
         android:text="@string/authTitle"
-        android:textSize="30dp" />
+        android:textSize="30sp" />
 
     <EditText
         android:id="@+id/loginEditText"
@@ -26,10 +26,11 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="10"
+        android:hint="@string/loginHint"
         android:inputType="textPersonName"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:text="Логин" />
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/passwordEditText"
@@ -37,14 +38,14 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="10"
+        android:hint="@string/passwordHint"
         android:inputType="textPassword"
-        android:text="Пароль" />
+        android:importantForAutofill="no" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/logInBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:onClick="onLogIn"
-        android:text="Войти" />
+        android:text="@string/logInBtn" />
 </LinearLayout>

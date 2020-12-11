@@ -36,10 +36,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    public void onAuthClick(View view) {
-        startActivity(new Intent(MainActivity.this, LoginActivity.class));
-    }
-
-
 }
