@@ -70,10 +70,6 @@ public class LoginActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void onLogIn(View view) throws IOException {
-
-//        findViewById(R.id.list).setVisibility(View.GONE);
-//        findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
-
         String login = loginEditText.getText().toString();
         String password = passwordEditText.getText().toString();
         if (checkAuth(login, password)) {
@@ -84,18 +80,10 @@ public class LoginActivity extends AppCompatActivity {
             progressBar.setVisibility(View.INVISIBLE);
             Toast.makeText(LoginActivity.this, "Неправильный логин или пароль!", Toast.LENGTH_LONG).show();
         }
-
-//        editNumberOfRoom.setText("");
-//        editTextReview.setText("");
-//        editNumberOfRoom.clearFocus();
-//        editTextReview.clearFocus();
-
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private Boolean checkAuth(String login, String password) {
-        // Include REST API
         api = ApiConfiguration.getApi();
         boolean bool = false;
 
@@ -105,7 +93,6 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     LoginRequest dataAuth = new LoginRequest(login, password);
                     LoginResponse resp = api.logIn(dataAuth).execute().body();
-                    System.out.println(">>>> BODY: "+resp);
                     return resp;
                 } catch (IOException e) {
                     throw new IllegalStateException(e);
