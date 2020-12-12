@@ -2,12 +2,16 @@ package ru.catcherry.teammobile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.auth0.android.jwt.Claim;
+import com.auth0.android.jwt.JWT;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -21,6 +25,7 @@ public class AddReviewActivity extends AppCompatActivity {
     EditText editNumberOfRoom, editTextReview;
     RadioGroup radio;
     ApiInterface api;
+    JWT jwt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,7 @@ public class AddReviewActivity extends AppCompatActivity {
         radio = findViewById(R.id.numberOfStars);
         radio.clearCheck();
         api = ApiConfiguration.getApi();
+        jwt = (JWT) getIntent().getParcelableExtra("jwt");
     }
 
     public void OnAddReview(View view){
@@ -62,7 +68,10 @@ public class AddReviewActivity extends AppCompatActivity {
             room_id = 1;
             else
             room_id = Integer.parseInt(editNumberOfRoom.getText().toString());
-        author_id = 1037;
+
+        Claim subscriptionMetaData = jwt.getClaim("id");
+        String user_id = subscriptionMetaData.asString();
+        author_id = Integer.parseInt(user_id);
         comment = editTextReview.getText().toString();
 
         System.out.println("Комната: " + room_id);
@@ -91,8 +100,9 @@ public class AddReviewActivity extends AppCompatActivity {
         editNumberOfRoom.clearFocus();
         editTextReview.clearFocus();
         radio.clearCheck();
-
-
+        Intent intent = getIntent();
+        setResult(MainActivity.RESULT_OK, intent);
+        finish();
     }
 
 

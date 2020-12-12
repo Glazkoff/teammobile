@@ -14,6 +14,9 @@ import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.auth0.android.jwt.Claim;
+import com.auth0.android.jwt.JWT;
+
 import java.io.IOException;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
@@ -72,10 +75,16 @@ public class LoginActivity extends AppCompatActivity {
     public void onLogIn(View view) throws IOException {
         String login = loginEditText.getText().toString();
         String password = passwordEditText.getText().toString();
-        if (checkAuth(login, password)) {
-            Toast.makeText(LoginActivity.this, "Привет!", Toast.LENGTH_LONG).show();
+        String token = checkAuth(login, password);
+        if (!token.equals("")) {
+            JWT jwt = new JWT(token);
+            Claim subscriptionMetaData = jwt.getClaim("name");
+            String name = subscriptionMetaData.asString();
+            Toast.makeText(LoginActivity.this, "Привет, "+name+"!", Toast.LENGTH_LONG).show();
             progressBar.setVisibility(View.INVISIBLE);
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra("jwt", jwt);
+            startActivity(intent);
         } else {
             progressBar.setVisibility(View.INVISIBLE);
             Toast.makeText(LoginActivity.this, "Неправильный логин или пароль!", Toast.LENGTH_LONG).show();
@@ -83,10 +92,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private Boolean checkAuth(String login, String password) {
+    private String checkAuth(String login, String password) {
         api = ApiConfiguration.getApi();
-        boolean bool = false;
-
         CompletableFuture<LoginResponse> auth = CompletableFuture.supplyAsync(new Supplier<LoginResponse>() {
             @Override
             public LoginResponse get() {
@@ -105,16 +112,16 @@ public class LoginActivity extends AppCompatActivity {
             response = auth.get();
             if (response != null) {
                 if (response.token != null) {
-                    return true;
+                    return response.token;
                 } else {
-                    return false;
+                    return "";
                 }
             } else {
-                return false;
+                return "";
             }
         } catch (ExecutionException | InterruptedException e) {
             e.printStackTrace();
-            return false;
+            return "";
         }
     }
 }

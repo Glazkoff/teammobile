@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class ReviewsFragment extends Fragment {
     List<Review> list;
     ApiInterface api;
     private CompositeDisposable disposables;
+    ProgressBar progressBar;
 
     public ReviewsFragment() {
     }
@@ -45,16 +47,31 @@ public class ReviewsFragment extends Fragment {
         api = ApiConfiguration.getApi();
         disposables = new CompositeDisposable();
 
+        progressBar = view.findViewById(R.id.reviewsSpinner);
+
+        loadReviews();
+        return view;
+    }
+
+    public void loadReviews() {
+        System.out.println("!!!! LOAD REVIEWS !!!");
+        progressBar.setVisibility(View.VISIBLE);
+        reviewsRecyclerView.setVisibility(View.GONE);
         disposables.add(api.reviews()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((reviewsList) -> {
+                    int oldSize = list.size();
                     list.clear();
                     list.addAll(reviewsList.reviews);
+                    if (list.size() == oldSize && oldSize != 0) {
+                        loadReviews();
+                    }
                     adapter.notifyDataSetChanged();
-                }, (error) -> Toast.makeText(view.getContext(), "При поиске возникла ошибка:\n" + error.getMessage(),
-                        Toast.LENGTH_LONG).show()));
-        return view;
+                    progressBar.setVisibility(View.GONE);
+                    reviewsRecyclerView.setVisibility(View.VISIBLE);
+                }, (error) -> {
+                }));
     }
 
 }

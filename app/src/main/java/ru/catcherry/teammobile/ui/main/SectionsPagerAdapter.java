@@ -1,6 +1,8 @@
 package ru.catcherry.teammobile.ui.main;
 
 import android.content.Context;
+import android.util.SparseArray;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -19,6 +21,8 @@ import ru.catcherry.teammobile.users.UsersFragment;
  */
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
+    private SparseArray<Fragment> registeredFragments = new SparseArray<>();
+
     @StringRes
     private static final int[] TAB_TITLES = new int[]{R.string.tab_text_1, R.string.tab_text_2, R.string.tab_text_4};
     private final Context mContext;
@@ -34,14 +38,12 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
         // Return a PlaceholderFragment (defined as a static inner class below).
         // return PlaceholderFragment.newInstance(position + 1);
             switch (position) {
-            case 0:
-                return new UsersFragment();
-            case 1:
-                return new ReviewsFragment();
-            case 2:
-                return new ConfigsFragment();
-
-           default:
+                case 1:
+                    return new ReviewsFragment();
+                case 2:
+                    return new ConfigsFragment();
+                case 0:
+                default:
                 return new UsersFragment();
         }
     }
@@ -55,5 +57,24 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return 3;
+    }
+
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        Fragment fragment = (Fragment) super.instantiateItem(container, position);
+        registeredFragments.put(position, fragment);
+        return fragment;
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        registeredFragments.remove(position);
+        super.destroyItem(container, position, object);
+    }
+
+
+
+    public Fragment getRegisteredFragment(int position) {
+        return registeredFragments.get(position);
     }
 }
