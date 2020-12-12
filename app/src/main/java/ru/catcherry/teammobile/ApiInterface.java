@@ -9,6 +9,8 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import ru.catcherry.teammobile.config.Config;
 import ru.catcherry.teammobile.config.ConfigData;
+import ru.catcherry.teammobile.login.LoginRequest;
+import ru.catcherry.teammobile.login.LoginResponse;
 import ru.catcherry.teammobile.reviews.Review;
 import ru.catcherry.teammobile.reviews.ReviewsList;
 import ru.catcherry.teammobile.users.UsersList;
@@ -32,4 +34,7 @@ public interface ApiInterface {
 
     @POST("admin/globalconfig")
     Call<Config> addConfig(@Body Config data);
+
+    @POST("login")
+    Call<LoginResponse> logIn(@Body LoginRequest data);
 }

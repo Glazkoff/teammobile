@@ -21,5 +21,9 @@
     <string name="edit">Изменить</string>
     <string name="headerUpdateConfig">Редактирование настроек глобальной конфигурации</string>
     <string name="save">Сохранить</string>
+    <string name="authTitle">Вход в dashboard IMGame</string>
+    <string name="logInBtn">Войти</string>
+    <string name="loginHint">Логин</string>
+    <string name="passwordHint">Пароль</string>
     <string name="headerAddReview">Добавление отзыва</string>
 </resources>

@@ -2,12 +2,19 @@ package ru.catcherry.teammobile;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.auth0.android.jwt.Claim;
+import com.auth0.android.jwt.JWT;
+
+import org.jetbrains.annotations.NotNull;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -21,6 +28,10 @@ public class AddReviewActivity extends AppCompatActivity {
     EditText editNumberOfRoom, editTextReview;
     RadioGroup radio;
     ApiInterface api;
+    JWT jwt;
+
+    public static final int ADD = 1;
+    public static final int NO_ADD = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +40,11 @@ public class AddReviewActivity extends AppCompatActivity {
         radio = findViewById(R.id.numberOfStars);
         radio.clearCheck();
         api = ApiConfiguration.getApi();
+        jwt = getIntent().getParcelableExtra("jwt");
     }
 
+
+    @SuppressLint("NonConstantResourceId")
     public void OnAddReview(View view){
         radio = findViewById(R.id.numberOfStars);
         int rating = -1;
@@ -62,28 +76,23 @@ public class AddReviewActivity extends AppCompatActivity {
             room_id = 1;
             else
             room_id = Integer.parseInt(editNumberOfRoom.getText().toString());
-        author_id = 1037;
-        comment = editTextReview.getText().toString();
 
-        System.out.println("Комната: " + room_id);
-        System.out.println("Автор: " + author_id);
-        System.out.println("Кол-во звезд: " + rating + "/5");
-        System.out.println("Текст комментария: " + comment);
+        Claim subscriptionMetaData = jwt.getClaim("id");
+        String user_id = subscriptionMetaData.asString();
+        author_id = Integer.parseInt(user_id);
+        comment = editTextReview.getText().toString();
 
         Review data = new Review(author_id, room_id, rating, comment);
         Call<Review> call = api.addReview(data);
         call.enqueue(new Callback<Review>() {
             @Override
-            public void onResponse(Call<Review> call, Response<Review> response) {
+            public void onResponse(@NotNull Call<Review> call, @NotNull Response<Review> response) {
                 int mStatusCode = response.code();
                 Review review = response.body();
-                Log.d("AddReviewActivity","onResponse " + mStatusCode + ". ID new review: " + review.review_id);
             }
 
             @Override
-            public void onFailure(Call<Review> call, Throwable t) {
-                Log.d("AddReviewActivity","onFailure" + t);
-
+            public void onFailure(@NotNull Call<Review> call, @NotNull Throwable t) {
             }});
 
         editNumberOfRoom.setText("");
@@ -91,8 +100,9 @@ public class AddReviewActivity extends AppCompatActivity {
         editNumberOfRoom.clearFocus();
         editTextReview.clearFocus();
         radio.clearCheck();
-
-
+        Intent intent = getIntent();
+        setResult(ADD, intent);
+        finish();
     }
 
 
