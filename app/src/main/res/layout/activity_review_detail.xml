@@ -40,9 +40,14 @@
         android:id="@+id/deleteReview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#2196F3"
         android:onClick="deleteReview"
         android:text="@string/delete"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:layout_gravity="center_horizontal|center"
+        android:background="@color/colorPrimary"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        />
 
 </LinearLayout>

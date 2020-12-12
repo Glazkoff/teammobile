@@ -5,22 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingLeft="32dp"
-    android:paddingRight="32dp"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp"
     tools:context=".LoginActivity">
 
     <TextView
         android:id="@+id/loginTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center_horizontal"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
-        android:text="@string/authTitle"
-        android:textColor="#2196F3"
-        android:textSize="35sp"
-        android:textStyle="bold" />
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        android:text="@string/authTitle" />
 
     <EditText
         android:id="@+id/loginEditText"
@@ -28,30 +28,36 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ems="10"
+        android:textColorLink="@color/colorPrimary"
         android:hint="@string/loginHint"
         android:inputType="textPersonName"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
         android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/passwordEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:ems="10"
+        android:layout_weight="1"
         android:hint="@string/passwordHint"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
-        android:importantForAutofill="no" />
+        android:layout_marginBottom="20dp"
+        android:textColorLink="@color/colorPrimary" />
 
     <Button
         android:id="@+id/logInBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="#2196F3"
         android:text="@string/logInBtn"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:layout_gravity="center_horizontal|center"
+        android:background="@color/colorPrimary"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        android:textStyle="normal"
+        />
 
     <ProgressBar
         android:id="@+id/loginProgressBar"
