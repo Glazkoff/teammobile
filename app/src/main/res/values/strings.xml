@@ -25,4 +25,5 @@
     <string name="logInBtn">Войти</string>
     <string name="loginHint">Логин</string>
     <string name="passwordHint">Пароль</string>
+    <string name="headerAddReview">Добавление отзыва</string>
 </resources>
