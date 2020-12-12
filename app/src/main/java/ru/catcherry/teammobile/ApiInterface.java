@@ -4,6 +4,7 @@ import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -37,4 +38,7 @@ public interface ApiInterface {
 
     @POST("login")
     Call<LoginResponse> logIn(@Body LoginRequest data);
+
+    @DELETE("deletereview/{reviewId}")
+    Call<Void> deleteReview(@Path("reviewId") int reviewId);
 }

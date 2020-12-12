@@ -31,7 +31,6 @@ public class AddReviewActivity extends AppCompatActivity {
     JWT jwt;
 
     public static final int ADD = 1;
-    public static final int NO_ADD = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

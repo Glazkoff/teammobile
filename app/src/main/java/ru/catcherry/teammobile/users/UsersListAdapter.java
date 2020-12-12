@@ -10,7 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import ru.catcherry.teammobile.R;
 
@@ -18,6 +20,8 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
 
     private Context context;
     private List<User> list;
+
+    SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss dd.MM.yyyy ", Locale.getDefault());
 
     UsersListAdapter(Context context, List<User> list){
         this.context = context;
@@ -35,9 +39,9 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         User user = list.get(position);
         holder.userId.setText("ID #"+user.user_id);
-        holder.userName.setText("Name: "+user.name);
-        holder.userLogin.setText("Login: "+user.login);
-        holder.userCreatedAt.setText("Date: "+user.createdAt);
+        holder.userName.setText("Имя: "+user.name);
+        holder.userLogin.setText("Логин: "+user.login);
+        holder.userCreatedAt.setText("Дата: "+format.format(user.createdAt));
     }
 
     @Override

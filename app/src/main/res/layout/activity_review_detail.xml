@@ -36,4 +36,13 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#000000" />
 
+    <Button
+        android:id="@+id/deleteReview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2196F3"
+        android:onClick="deleteReview"
+        android:text="@string/delete"
+        android:textColor="#FFFFFF" />
+
 </LinearLayout>

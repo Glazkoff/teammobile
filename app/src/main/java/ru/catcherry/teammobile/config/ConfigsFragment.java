@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,29 +18,34 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import ru.catcherry.teammobile.AddReviewActivity;
 import ru.catcherry.teammobile.ApiConfiguration;
 import ru.catcherry.teammobile.ApiInterface;
+import ru.catcherry.teammobile.MainActivity;
 import ru.catcherry.teammobile.R;
+import ru.catcherry.teammobile.reviews.ReviewsFragment;
 
 public class ConfigsFragment extends Fragment {
 
-    TextView configId;
-    TextView configEventChance;
-    TextView configUpdatedAt;
-    TextView configCreatedAt;
+    TextView configId, configEventChance, configUpdatedAt;
     Button updateConfig;
     Double event_chance;
+    ProgressBar progressBar;
 
     ApiInterface api;
     private CompositeDisposable disposables;
 
     private SwipeRefreshLayout swipeContainer;
 
-    public ConfigsFragment() {
+    SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss dd.MM.yyyy ", Locale.getDefault());
 
+    public ConfigsFragment() {
     }
 
     @Nullable
@@ -57,9 +63,9 @@ public class ConfigsFragment extends Fragment {
         event_chance = 1.0;
 
         View.OnClickListener updateConfigClick = v -> {
-            Intent i = new Intent(ConfigsFragment.this.getActivity(), EditConfigActivity.class);
-            i.putExtra("event_chance", event_chance);
-            startActivity(i);
+            Intent intent = new Intent(ConfigsFragment.this.getActivity(), EditConfigActivity.class);
+            intent.putExtra("event_chance", event_chance);
+            startActivityForResult(intent, EditConfigActivity.EDIT);
         };
 
         updateConfig.setOnClickListener(updateConfigClick);
@@ -78,14 +84,18 @@ public class ConfigsFragment extends Fragment {
 
     @SuppressLint("SetTextI18n")
     public void getConfig() {
+        String old_id = configId.getText().toString();
         disposables.add(api.configs()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((configData) -> {
+                    if (old_id.equals(("Редакция: #"+configData.config.config_id))) {
+                        getConfig();
+                    }
                     configId.setText("Редакция: #"+ configData.config.config_id);
                     event_chance = configData.config.event_chance;
                     configEventChance.setText("Шанс случайного события: "+ configData.config.event_chance);
-                    configUpdatedAt.setText("Дата изменения: "+ configData.config.createdAt);
+                    configUpdatedAt.setText("Дата изменения: "+ format.format(configData.config.createdAt));
                     swipeContainer.setRefreshing(false);
                 }, (error) -> swipeContainer.setRefreshing(false)));
     }
@@ -99,11 +109,10 @@ public class ConfigsFragment extends Fragment {
                     configId.setText("Редакция: #"+ configData.config.config_id);
                     event_chance = configData.config.event_chance;
                     configEventChance.setText("Шанс случайного события: "+ configData.config.event_chance);
-                    configUpdatedAt.setText("Дата изменения: "+ configData.config.createdAt);
+                    configUpdatedAt.setText("Дата изменения: "+ format.format(configData.config.createdAt));
                     swipeContainer.setRefreshing(false);
                 }, (error) -> swipeContainer.setRefreshing(false)));
     }
-
 
 }
 

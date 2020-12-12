@@ -26,6 +26,8 @@ public class EditConfigActivity extends AppCompatActivity {
     private CompositeDisposable disposables;
     Double event_chance;
 
+    public static final int EDIT = 2;
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +51,14 @@ public class EditConfigActivity extends AppCompatActivity {
             public void onResponse(@NotNull Call<Config> call, @NotNull Response<Config> response) {
                 int mStatusCode = response.code();
                 Config config = response.body();
-                System.out.println("Yes");
-                finish();
             }
             @Override
             public void onFailure(@NotNull Call<Config> call, @NotNull Throwable t) {
-                System.out.println("No");
             }});
+
+        Intent intent = getIntent();
+        setResult(EDIT, intent);
+        finish();
 
 
     }

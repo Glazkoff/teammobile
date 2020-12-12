@@ -2,6 +2,7 @@ package ru.catcherry.teammobile;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.SoundPool;
 import android.os.Bundle;
 
 import com.auth0.android.jwt.JWT;
@@ -22,6 +23,9 @@ import android.widget.Toast;
 import java.util.List;
 import java.util.Objects;
 
+import ru.catcherry.teammobile.config.ConfigsFragment;
+import ru.catcherry.teammobile.config.EditConfigActivity;
+import ru.catcherry.teammobile.reviews.ReviewDetailActivity;
 import ru.catcherry.teammobile.reviews.ReviewsFragment;
 import ru.catcherry.teammobile.ui.main.SectionsPagerAdapter;
 
@@ -61,6 +65,28 @@ public class MainActivity extends AppCompatActivity  {
                     }
                 }
                 Toast.makeText(MainActivity.this, "Отзыв успешно добавлен!", Toast.LENGTH_LONG).show();
+            }
+        }
+        if (resultCode == 2) {
+            if ((requestCode & 0x0000ffff) == EditConfigActivity.EDIT) {
+                for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                    if (fragment instanceof ConfigsFragment) {
+                        ((ConfigsFragment) fragment).getConfig();
+                        break;
+                    }
+                }
+                Toast.makeText(MainActivity.this, "Глобальная конфигурация успешно изменена!", Toast.LENGTH_LONG).show();
+            }
+        }
+        if (resultCode == 3) {
+            if ((requestCode & 0x0000ffff) == ReviewDetailActivity.DELETE) {
+                for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+                    if (fragment instanceof ReviewsFragment) {
+                        ((ReviewsFragment) fragment).loadReviews();
+                        break;
+                    }
+                }
+                Toast.makeText(MainActivity.this, "Отзыв успешно удален!", Toast.LENGTH_LONG).show();
             }
         }
     }

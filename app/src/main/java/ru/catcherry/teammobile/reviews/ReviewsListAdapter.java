@@ -1,5 +1,6 @@
 package ru.catcherry.teammobile.reviews;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -42,7 +43,7 @@ public class ReviewsListAdapter extends RecyclerView.Adapter<ReviewsListAdapter.
         holder.detailReviewLayout.setOnClickListener(v -> {
             Intent intent = new Intent(context, ReviewDetailActivity.class);
             intent.putExtra("reviewId", review.review_id);
-            context.startActivity(intent);
+            ((Activity) context).startActivityForResult(intent, ReviewDetailActivity.DELETE);
         });
     }
 

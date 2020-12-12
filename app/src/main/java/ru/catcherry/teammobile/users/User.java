@@ -2,6 +2,8 @@ package ru.catcherry.teammobile.users;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 public class User {
 
     @SerializedName("user_id")
@@ -14,6 +16,6 @@ public class User {
     String name;
 
     @SerializedName("createdAt")
-    String createdAt;
+    Date createdAt;
 
 }
