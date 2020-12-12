@@ -1,5 +1,6 @@
 package ru.catcherry.teammobile;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -26,7 +27,7 @@ import ru.catcherry.teammobile.ui.main.SectionsPagerAdapter;
 
 public class MainActivity extends AppCompatActivity  {
 
-    final static int RESULT_OK = 1;
+
     JWT jwt;
 
     @Override
@@ -38,26 +39,29 @@ public class MainActivity extends AppCompatActivity  {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
-        jwt = (JWT) getIntent().getParcelableExtra("jwt");
+        jwt = getIntent().getParcelableExtra("jwt");
     }
 
     public void onFabClick(View view) {
         Intent intent = new Intent(MainActivity.this, AddReviewActivity.class);
         intent.putExtra("jwt", jwt);
-        startActivityForResult(intent, RESULT_OK);
+        startActivityForResult(intent, AddReviewActivity.ADD);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_OK) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 1) {
+            if (requestCode == AddReviewActivity.ADD) {
                 for (Fragment fragment : getSupportFragmentManager().getFragments()) {
                     if (fragment instanceof ReviewsFragment) {
                         ((ReviewsFragment) fragment).loadReviews();
                         break;
                     }
+                }
+                Toast.makeText(MainActivity.this, "Отзыв успешно добавлен!", Toast.LENGTH_LONG).show();
             }
-            Toast.makeText(MainActivity.this, "Отзыв успешно добавлен!", Toast.LENGTH_LONG).show();
         }
     }
 }
