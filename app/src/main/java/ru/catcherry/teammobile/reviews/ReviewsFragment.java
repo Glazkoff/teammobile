@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -31,6 +32,7 @@ public class ReviewsFragment extends Fragment {
     ApiInterface api;
     private CompositeDisposable disposables;
     ProgressBar progressBar;
+    private SwipeRefreshLayout swipeContainer;
 
     public ReviewsFragment() {
     }
@@ -50,11 +52,42 @@ public class ReviewsFragment extends Fragment {
         progressBar = view.findViewById(R.id.reviewsSpinner);
 
         loadReviews();
+
+        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.reviewsSwipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                loadReviewsFromSwipe();
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(R.color.colorAccent,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
         return view;
     }
 
+    public void loadReviewsFromSwipe() {
+        reviewsRecyclerView.setVisibility(View.GONE);
+        disposables.add(api.reviews()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((reviewsList) -> {
+                    list.clear();
+                    list.addAll(reviewsList.reviews);
+                    adapter.notifyDataSetChanged();
+                    swipeContainer.setRefreshing(false);
+                    reviewsRecyclerView.setVisibility(View.VISIBLE);
+                }, (error) -> {
+                    swipeContainer.setRefreshing(false);
+                    reviewsRecyclerView.setVisibility(View.VISIBLE);
+                }));
+    }
+
     public void loadReviews() {
-        System.out.println("!!!! LOAD REVIEWS !!!");
         progressBar.setVisibility(View.VISIBLE);
         reviewsRecyclerView.setVisibility(View.GONE);
         disposables.add(api.reviews()
@@ -71,6 +104,8 @@ public class ReviewsFragment extends Fragment {
                     progressBar.setVisibility(View.GONE);
                     reviewsRecyclerView.setVisibility(View.VISIBLE);
                 }, (error) -> {
+                    progressBar.setVisibility(View.GONE);
+                    reviewsRecyclerView.setVisibility(View.VISIBLE);
                 }));
     }
 

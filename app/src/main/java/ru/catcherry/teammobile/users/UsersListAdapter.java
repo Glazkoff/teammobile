@@ -45,6 +45,16 @@ public class UsersListAdapter extends RecyclerView.Adapter<UsersListAdapter.View
         return list.size();
     }
 
+    public void clear() {
+        list.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<User> list) {
+        list.addAll(list);
+        notifyDataSetChanged();
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView userId;

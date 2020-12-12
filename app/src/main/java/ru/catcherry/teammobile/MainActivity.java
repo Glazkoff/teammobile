@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity  {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_OK) {
                 for (Fragment fragment : getSupportFragmentManager().getFragments()) {
-                    System.out.println(">>>> FRAGMENTS >>>>"+"3/1");
-                    System.out.println(">>>> FRAGMENTS >>>>"+fragment.toString());
                     if (fragment instanceof ReviewsFragment) {
                         ((ReviewsFragment) fragment).loadReviews();
                         break;
