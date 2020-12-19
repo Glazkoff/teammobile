@@ -2,6 +2,10 @@
 
 [Ссылка на apk файл (imgame_dashboard.apk)](/imgame_dashboard.apk)
 
+Тестовые данные для входа
+Логин: test1
+Пароль: test1
+
 В данной лабораторной работе представлена административная панель для веб-приложения [IMGame - The Internet-marketing Game](https://marketing-game.herokuapp.com/).
 
 Административная панель представляет следующий функционал:
